@@ -1,0 +1,4 @@
+Table,Description
+dim_material,"Stores detailed information about materials, including their unique identifiers, descriptions, material types, and various attributes relevant to manufacturing or inventory management processes. This table serves as a reference for materials used in production, inventory, or quality tracking."
+dim_plant,"Contains information about plants or manufacturing locations. This table includes plant identifiers, names, and related attributes. It is used to reference the location of materials or quality movements across different plants in a manufacturing or inventory system."
+fact_quality_material_movement,"Tracks the movement of materials in and out of the production process, specifically related to quality assurance or control. This fact table stores data related to the quantity of materials moved, the source and destination plant, and quality-related details, such as testing results or defect statuses."
