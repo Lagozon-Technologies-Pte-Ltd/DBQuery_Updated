@@ -18,7 +18,7 @@ import os
 import pandas as pd # type: ignore
 from dotenv import load_dotenv # type: ignore
 import streamlit as st # type: ignore
-import pyodbc
+# import pyodbc
 load_dotenv()
 
 db_user = os.getenv("db_user")
@@ -41,29 +41,29 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2")
 # LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
 # LANGCHAIN_ENDPOINT=os.getenv("LANGCHAIN_ENDPOINT")
-DATABASE_CONFIG = {
-    "Driver": os.getenv('Driver'),
-    "Server": os.getenv('Server'),
-    "Database": os.getenv('Database'),
-    "Uid": os.getenv('Uid'),
-    "Pwd": os.getenv('PWD'),
-    # "Schema": os.getenv('SCHEMA'),
-    "Encrypt": "yes",
-    "TrustServerCertificate": "no",
-    "Connection Timeout": "30",
-}
-connection_string = (
-        f"DRIVER={DATABASE_CONFIG['Driver']};"
-        f"SERVER={DATABASE_CONFIG['Server']};"
-        f"DATABASE={DATABASE_CONFIG['Database']};"
-        f"UID={DATABASE_CONFIG['Uid']};"
-        f"PWD={DATABASE_CONFIG['Pwd']};"
-        f"Encrypt={DATABASE_CONFIG['Encrypt']};"
-        f"TrustServerCertificate={DATABASE_CONFIG['TrustServerCertificate']};"
-        f"Connection Timeout={DATABASE_CONFIG['Connection Timeout']};"
-        # f"CurrentSchema={DATABASE_CONFIG['Schema']};"
-    )
-print("This is connection:",connection_string)
+# DATABASE_CONFIG = {
+#     "Driver": os.getenv('Driver'),
+#     "Server": os.getenv('Server'),
+#     "Database": os.getenv('Database'),
+#     "Uid": os.getenv('Uid'),
+#     "Pwd": os.getenv('PWD'),
+#     # "Schema": os.getenv('SCHEMA'),
+#     "Encrypt": "yes",
+#     "TrustServerCertificate": "no",
+#     "Connection Timeout": "30",
+# }
+# connection_string = (
+#         f"DRIVER={DATABASE_CONFIG['Driver']};"
+#         f"SERVER={DATABASE_CONFIG['Server']};"
+#         f"DATABASE={DATABASE_CONFIG['Database']};"
+#         f"UID={DATABASE_CONFIG['Uid']};"
+#         f"PWD={DATABASE_CONFIG['Pwd']};"
+#         f"Encrypt={DATABASE_CONFIG['Encrypt']};"
+#         f"TrustServerCertificate={DATABASE_CONFIG['TrustServerCertificate']};"
+#         f"Connection Timeout={DATABASE_CONFIG['Connection Timeout']};"
+#         # f"CurrentSchema={DATABASE_CONFIG['Schema']};"
+#     )
+# print("This is connection:",connection_string)
 
 
 from langchain_community.utilities.sql_database import SQLDatabase # type: ignore
@@ -182,16 +182,16 @@ def get_chain(question, _messages, selected_model):
                            lazy_table_reflection=True)
             print("DB Connection Done for Synapse----")
     else:
-        if st.session_state.selected_subject.startswith('Dummy'):
-            db = SQLDatabase.from_uri(f'postgresql+psycopg2://{quote_plus(db_user)}:{quote_plus(db_password)}@{db_host}:{db_port}/{db_database}'
-                        ,schema=db_schema
-                        ,include_tables= chosen_tables
-                        , view_support=True
-                        ,sample_rows_in_table_info=1
-                        ,lazy_table_reflection=True
-                        )
-            print("DB Connection Done for Adventureworks----",db._schema)
-        else:
+        # if st.session_state.selected_subject.startswith('Dummy'):
+        #     db = SQLDatabase.from_uri(f'postgresql+psycopg2://{quote_plus(db_user)}:{quote_plus(db_password)}@{db_host}:{db_port}/{db_database}'
+        #                 ,schema=db_schema
+        #                 ,include_tables= chosen_tables
+        #                 , view_support=True
+        #                 ,sample_rows_in_table_info=1
+        #                 ,lazy_table_reflection=True
+        #                 )
+        #     print("DB Connection Done for Adventureworks----",db._schema)
+        # else:
             db = SQLDatabase.from_uri(f'postgresql+psycopg2://{quote_plus(db_user)}:{quote_plus(db_password)}@{db_host}:{db_port}/{db_database}'
                                     ,schema=db_schema
                                     ,include_tables= chosen_tables
